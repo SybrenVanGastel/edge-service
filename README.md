@@ -1,1 +1,1 @@
-# brank-edge-service
+# edge-service
