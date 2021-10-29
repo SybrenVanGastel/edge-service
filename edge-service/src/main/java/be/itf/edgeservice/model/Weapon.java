@@ -20,6 +20,14 @@ public class Weapon {
         this.imageUrl = imageUrl;
     }
 
+    public Weapon(String name, String description, String imageUrl, List<Ability> abilities, List<Attribute> attributes) {
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.abilities = abilities;
+        this.attributes = attributes;
+    }
+
     public Integer getId() {
         return id;
     }

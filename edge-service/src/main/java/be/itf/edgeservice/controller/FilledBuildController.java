@@ -20,8 +20,8 @@ import java.util.List;
 
 @RestController
 public class FilledBuildController {
-    // RestTemplate
-    private RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Value("http://localhost:8081")
     private String weaponServiceBaseUrl;
@@ -141,7 +141,7 @@ public class FilledBuildController {
     public ResponseEntity<Object> createBuild(@RequestBody Build build) {
         try {
             Build createdBuild = restTemplate.postForObject(builderServiceBaseUrl + "/builder", build, Build.class);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(createdBuild, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -165,7 +165,7 @@ public class FilledBuildController {
 
             restTemplate.exchange(builderServiceBaseUrl + "/builder/{name}", HttpMethod.PUT, new HttpEntity<>(buildToUpdate), Build.class, name);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(buildToUpdate, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

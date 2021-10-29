@@ -11,7 +11,8 @@ public class Ability {
     public Ability() {
     }
 
-    public Ability(String name, String description, String imageUrl, String category, String color) {
+    public Ability(Integer id, String name, String description, String imageUrl, String category, String color) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
