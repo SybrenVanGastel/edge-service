@@ -342,7 +342,7 @@ public class FilledBuildControllerUnitTests {
                         .body(mapper.writeValueAsString(build))
                 );
 
-        mockMvc.perform(put("/builder/{name}", "build2")
+        mockMvc.perform(put("/build/{name}", "build2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(build)))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
