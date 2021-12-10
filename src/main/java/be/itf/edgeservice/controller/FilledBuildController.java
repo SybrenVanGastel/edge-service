@@ -23,10 +23,10 @@ public class FilledBuildController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("http://localhost:8081")
+    @Value("${weaponservice.baseurl}")
     private String weaponServiceBaseUrl;
 
-    @Value("http://localhost:8082")
+    @Value("${builderservice.baseurl}")
     private String builderServiceBaseUrl;
 
     @GetMapping("/builds")

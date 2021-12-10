@@ -34,10 +34,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class FilledBuildControllerUnitTests {
 
-    @Value("http://localhost:8081")
+    @Value("${weaponservice.baseurl}")
     private String weaponServiceBaseUrl;
 
-    @Value("http://localhost:8082")
+    @Value("${builderservice.baseurl}")
     private String builderServiceBaseUrl;
 
     @Autowired
