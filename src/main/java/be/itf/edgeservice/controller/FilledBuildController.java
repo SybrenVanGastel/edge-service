@@ -33,7 +33,7 @@ public class FilledBuildController {
     public ResponseEntity<Object> getBuilds() {
         try {
             ResponseEntity<List<Build>> responseEntityBuilds =
-                    restTemplate.exchange(builderServiceBaseUrl + "/builders", HttpMethod.GET, null,
+                    restTemplate.exchange("http://" + builderServiceBaseUrl + "/builders", HttpMethod.GET, null,
                             new ParameterizedTypeReference<List<Build>>() {
                             });
 
@@ -49,7 +49,7 @@ public class FilledBuildController {
     @GetMapping("/build/{name}")
     public ResponseEntity<Object> getBuildByName(@PathVariable String name) {
         try {
-            Build build = restTemplate.getForObject(builderServiceBaseUrl + "/builder/{name}", Build.class, name);
+            Build build = restTemplate.getForObject("http://" + builderServiceBaseUrl + "/builder/{name}", Build.class, name);
 
             assert build != null;
             Weapon primaryWeapon = restTemplate.getForObject(weaponServiceBaseUrl + "/weapon/{name}", Weapon.class, build.getPrimaryWeaponName());
@@ -69,7 +69,7 @@ public class FilledBuildController {
     public ResponseEntity<Object> getBuildsByName(@PathVariable String name) {
         try {
             ResponseEntity<List<Build>> responseEntityBuilds =
-                    restTemplate.exchange(builderServiceBaseUrl + "/builders/{name}", HttpMethod.GET, null,
+                    restTemplate.exchange("http://" + builderServiceBaseUrl + "/builders/{name}", HttpMethod.GET, null,
                             new ParameterizedTypeReference<List<Build>>() {
                             }, name);
 
@@ -87,7 +87,7 @@ public class FilledBuildController {
     public ResponseEntity<Object> getBuildsByUsername(@PathVariable String name) {
         try {
             ResponseEntity<List<Build>> responseEntityBuilds =
-                    restTemplate.exchange(builderServiceBaseUrl + "/builders/user/{name}", HttpMethod.GET, null,
+                    restTemplate.exchange("http://" + builderServiceBaseUrl + "/builders/user/{name}", HttpMethod.GET, null,
                             new ParameterizedTypeReference<List<Build>>() {
                             }, name);
 
@@ -105,7 +105,7 @@ public class FilledBuildController {
     public ResponseEntity<Object> getBuildsByWeapon(@PathVariable String name) {
         try {
             ResponseEntity<List<Build>> responseEntityBuilds =
-                    restTemplate.exchange(builderServiceBaseUrl + "/builders/weapon/{name}", HttpMethod.GET, null,
+                    restTemplate.exchange("http://" + builderServiceBaseUrl + "/builders/weapon/{name}", HttpMethod.GET, null,
                             new ParameterizedTypeReference<List<Build>>() {
                             }, name);
 
@@ -123,7 +123,7 @@ public class FilledBuildController {
     public ResponseEntity<Object> getBuildsByTag(@PathVariable String name) {
         try {
             ResponseEntity<List<Build>> responseEntityBuilds =
-                    restTemplate.exchange(builderServiceBaseUrl + "/builders/tag/{name}", HttpMethod.GET, null,
+                    restTemplate.exchange("http://" + builderServiceBaseUrl + "/builders/tag/{name}", HttpMethod.GET, null,
                             new ParameterizedTypeReference<List<Build>>() {
                             }, name);
 
@@ -140,7 +140,7 @@ public class FilledBuildController {
     @PostMapping("/build")
     public ResponseEntity<Object> createBuild(@RequestBody Build build) {
         try {
-            Build createdBuild = restTemplate.postForObject(builderServiceBaseUrl + "/builder", build, Build.class);
+            Build createdBuild = restTemplate.postForObject("http://" + builderServiceBaseUrl + "/builder", build, Build.class);
             return new ResponseEntity<>(createdBuild, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
@@ -151,7 +151,7 @@ public class FilledBuildController {
     @PutMapping("/build/{name}")
     public ResponseEntity<Object> putBuild(@PathVariable String name, @RequestBody Build build) {
         try {
-            Build buildToUpdate = restTemplate.getForObject(builderServiceBaseUrl + "/builder/{name}", Build.class, name);
+            Build buildToUpdate = restTemplate.getForObject("http://" + builderServiceBaseUrl + "/builder/{name}", Build.class, name);
 
             assert buildToUpdate != null;
             buildToUpdate.setName(build.getName());
@@ -175,7 +175,7 @@ public class FilledBuildController {
     @DeleteMapping("/build/{name}")
     public ResponseEntity<Object> deleteBuild(@PathVariable String name) {
         try {
-            restTemplate.delete(builderServiceBaseUrl + "/builder/{name}", name);
+            restTemplate.delete("http://" + builderServiceBaseUrl + "/builder/{name}", name);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
