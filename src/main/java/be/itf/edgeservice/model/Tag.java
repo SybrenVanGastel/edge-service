@@ -1,5 +1,5 @@
 package be.itf.edgeservice.model;
 
 public enum Tag {
-    General, PvE, PvP, War
+    GENERAL, PVE, PVP, WAR
 }

@@ -32,12 +32,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class FilledBuildControllerUnitTests {
+class FilledBuildControllerUnitTests {
 
-    @Value("${weaponservice.baseurl}")
+    @Value("http://${weaponservice.baseurl}")
     private String weaponServiceBaseUrl;
 
-    @Value("${builderservice.baseurl}")
+    @Value("http://${builderservice.baseurl}")
     private String builderServiceBaseUrl;
 
     @Autowired
@@ -58,8 +58,8 @@ public class FilledBuildControllerUnitTests {
     List<Integer> selectedAbilities = Arrays.asList(1, 2);
     List<Integer> selectedAttributes = Arrays.asList(50, 0, 0, 150, 0);
 
-    private Build build1 = new Build("weapon1", "weapon2", "build1", "user1", Tag.PvE, selectedAbilities, selectedAbilities, selectedAttributes);
-    private Build build2 = new Build("weapon2", "weapon1", "build2", "user2", Tag.General, selectedAbilities, selectedAbilities, selectedAttributes);
+    private Build build1 = new Build("weapon1", "weapon2", "build1", "user1", Tag.PVE, selectedAbilities, selectedAbilities, selectedAttributes);
+    private Build build2 = new Build("weapon2", "weapon1", "build2", "user2", Tag.GENERAL, selectedAbilities, selectedAbilities, selectedAttributes);
 
     private List<Build> allBuilds = Arrays.asList(build1, build2);
 
@@ -69,11 +69,11 @@ public class FilledBuildControllerUnitTests {
     }
 
     @Test
-    public void whenGetBuilds_thenReturnBuildsJson() throws Exception {
+    void whenGetBuilds_thenReturnBuildsJson() throws Exception {
 
         // GET all builds
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders")))
+                requestTo(new URI(builderServiceBaseUrl + "/builders")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -86,22 +86,22 @@ public class FilledBuildControllerUnitTests {
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("build1")))
                 .andExpect(jsonPath("$[0].username", is("user1")))
-                .andExpect(jsonPath("$[0].tag", is("PvE")))
+                .andExpect(jsonPath("$[0].tag", is("PVE")))
                 .andExpect(jsonPath("$[0].primaryWeaponName", is("weapon1")))
                 .andExpect(jsonPath("$[0].secondaryWeaponName", is("weapon2")))
                 .andExpect(jsonPath("$[1].name", is("build2")))
                 .andExpect(jsonPath("$[1].username", is("user2")))
-                .andExpect(jsonPath("$[1].tag", is("General")))
+                .andExpect(jsonPath("$[1].tag", is("GENERAL")))
                 .andExpect(jsonPath("$[1].primaryWeaponName", is("weapon2")))
                 .andExpect(jsonPath("$[1].secondaryWeaponName", is("weapon1")));
     }
 
     @Test
-    public void whenGetBuildByName_thenReturnBuildJson() throws Exception {
+    void whenGetBuildByName_thenReturnBuildJson() throws Exception {
 
         // GET build with name "build1"
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder/build1")))
+                requestTo(new URI(builderServiceBaseUrl + "/builder/build1")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -110,7 +110,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET primary weapon
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + weaponServiceBaseUrl + "/weapon/weapon1")))
+                requestTo(new URI(weaponServiceBaseUrl + "/weapon/weapon1")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -119,7 +119,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET secondary weapon
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + weaponServiceBaseUrl + "/weapon/weapon2")))
+                requestTo(new URI(weaponServiceBaseUrl + "/weapon/weapon2")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -131,7 +131,7 @@ public class FilledBuildControllerUnitTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("build1")))
                 .andExpect(jsonPath("$.username", is("user1")))
-                .andExpect(jsonPath("$.tag", is("PvE")))
+                .andExpect(jsonPath("$.tag", is("PVE")))
                 .andExpect(jsonPath("$.attributes", aMapWithSize(5)))
                 .andExpect(jsonPath("$.attributes.[\"strength\"]", is(50)))
                 .andExpect(jsonPath("$.attributes.[\"dexterity\"]", is(0)))
@@ -179,11 +179,11 @@ public class FilledBuildControllerUnitTests {
     }
 
     @Test
-    public void whenGetBuildsByName_thenReturnBuildsJson() throws Exception {
+    void whenGetBuildsByName_thenReturnBuildsJson() throws Exception {
 
         // GET builds by name
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders/build")))
+                requestTo(new URI(builderServiceBaseUrl + "/builders/build")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -196,22 +196,22 @@ public class FilledBuildControllerUnitTests {
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("build1")))
                 .andExpect(jsonPath("$[0].username", is("user1")))
-                .andExpect(jsonPath("$[0].tag", is("PvE")))
+                .andExpect(jsonPath("$[0].tag", is("PVE")))
                 .andExpect(jsonPath("$[0].primaryWeaponName", is("weapon1")))
                 .andExpect(jsonPath("$[0].secondaryWeaponName", is("weapon2")))
                 .andExpect(jsonPath("$[1].name", is("build2")))
                 .andExpect(jsonPath("$[1].username", is("user2")))
-                .andExpect(jsonPath("$[1].tag", is("General")))
+                .andExpect(jsonPath("$[1].tag", is("GENERAL")))
                 .andExpect(jsonPath("$[1].primaryWeaponName", is("weapon2")))
                 .andExpect(jsonPath("$[1].secondaryWeaponName", is("weapon1")));
     }
 
     @Test
-    public void whenGetBuildsByUsername_thenReturnBuildsJson() throws Exception {
+    void whenGetBuildsByUsername_thenReturnBuildsJson() throws Exception {
 
         // GET builds by name
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders/user/user1")))
+                requestTo(new URI(builderServiceBaseUrl + "/builders/user/user1")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -224,17 +224,17 @@ public class FilledBuildControllerUnitTests {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].name", is("build1")))
                 .andExpect(jsonPath("$[0].username", is("user1")))
-                .andExpect(jsonPath("$[0].tag", is("PvE")))
+                .andExpect(jsonPath("$[0].tag", is("PVE")))
                 .andExpect(jsonPath("$[0].primaryWeaponName", is("weapon1")))
                 .andExpect(jsonPath("$[0].secondaryWeaponName", is("weapon2")));
     }
 
     @Test
-    public void whenGetBuildsByWeapon_thenReturnBuildsJson() throws Exception {
+    void whenGetBuildsByWeapon_thenReturnBuildsJson() throws Exception {
 
         // GET builds by name
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders/weapon/weapon1")))
+                requestTo(new URI(builderServiceBaseUrl + "/builders/weapon/weapon1")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -247,47 +247,47 @@ public class FilledBuildControllerUnitTests {
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("build1")))
                 .andExpect(jsonPath("$[0].username", is("user1")))
-                .andExpect(jsonPath("$[0].tag", is("PvE")))
+                .andExpect(jsonPath("$[0].tag", is("PVE")))
                 .andExpect(jsonPath("$[0].primaryWeaponName", is("weapon1")))
                 .andExpect(jsonPath("$[0].secondaryWeaponName", is("weapon2")))
                 .andExpect(jsonPath("$[1].name", is("build2")))
                 .andExpect(jsonPath("$[1].username", is("user2")))
-                .andExpect(jsonPath("$[1].tag", is("General")))
+                .andExpect(jsonPath("$[1].tag", is("GENERAL")))
                 .andExpect(jsonPath("$[1].primaryWeaponName", is("weapon2")))
                 .andExpect(jsonPath("$[1].secondaryWeaponName", is("weapon1")));
     }
 
     @Test
-    public void whenGetBuildsByTag_thenReturnBuildsJson() throws Exception {
+    void whenGetBuildsByTag_thenReturnBuildsJson() throws Exception {
 
         // GET builds by name
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders/tag/PvE")))
+                requestTo(new URI(builderServiceBaseUrl + "/builders/tag/PVE")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(mapper.writeValueAsString(Collections.singletonList(build1)))
                 );
 
-        mockMvc.perform(get("/builds/tag/{name}", "PvE"))
+        mockMvc.perform(get("/builds/tag/{name}", "PVE"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].name", is("build1")))
                 .andExpect(jsonPath("$[0].username", is("user1")))
-                .andExpect(jsonPath("$[0].tag", is("PvE")))
+                .andExpect(jsonPath("$[0].tag", is("PVE")))
                 .andExpect(jsonPath("$[0].primaryWeaponName", is("weapon1")))
                 .andExpect(jsonPath("$[0].secondaryWeaponName", is("weapon2")));
     }
 
     @Test
-    public void whenAddBuild_thenReturnBuildJson() throws Exception {
+    void whenAddBuild_thenReturnBuildJson() throws Exception {
 
-        Build build = new Build("weapon1", "weapon2", "create", "user1", Tag.PvE, selectedAbilities, selectedAbilities, selectedAttributes);
+        Build build = new Build("weapon1", "weapon2", "create", "user1", Tag.PVE, selectedAbilities, selectedAbilities, selectedAttributes);
 
         // POST create build
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder")))
+                requestTo(new URI(builderServiceBaseUrl + "/builder")))
                 .andExpect(method(HttpMethod.POST))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -303,7 +303,7 @@ public class FilledBuildControllerUnitTests {
                 .andExpect(jsonPath("$.secondaryWeaponName", is("weapon2")))
                 .andExpect(jsonPath("$.name", is("create")))
                 .andExpect(jsonPath("$.username", is("user1")))
-                .andExpect(jsonPath("$.tag", is("PvE")))
+                .andExpect(jsonPath("$.tag", is("PVE")))
                 .andExpect(jsonPath("$.selectedAbilitiesWeapon1", hasSize(2)))
                 .andExpect(jsonPath("$.selectedAbilitiesWeapon1[0]", is(1)))
                 .andExpect(jsonPath("$.selectedAbilitiesWeapon1[1]", is(2)))
@@ -320,13 +320,13 @@ public class FilledBuildControllerUnitTests {
     }
 
     @Test
-    public void whenUpdateBuild_thenReturnBuildJson() throws Exception {
+    void whenUpdateBuild_thenReturnBuildJson() throws Exception {
 
-        Build build = new Build("weapon1", "weapon2", "update", "user1", Tag.PvE, selectedAbilities, selectedAbilities, selectedAttributes);
+        Build build = new Build("weapon1", "weapon2", "update", "user1", Tag.PVE, selectedAbilities, selectedAbilities, selectedAttributes);
 
         // GET build with name "build2"
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder/build2")))
+                requestTo(new URI(builderServiceBaseUrl + "/builder/build2")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -335,7 +335,7 @@ public class FilledBuildControllerUnitTests {
 
         // PUT update build2
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder/build2")))
+                requestTo(new URI(builderServiceBaseUrl + "/builder/build2")))
                 .andExpect(method(HttpMethod.PUT))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -351,7 +351,7 @@ public class FilledBuildControllerUnitTests {
                 .andExpect(jsonPath("$.secondaryWeaponName", is("weapon2")))
                 .andExpect(jsonPath("$.name", is("update")))
                 .andExpect(jsonPath("$.username", is("user1")))
-                .andExpect(jsonPath("$.tag", is("PvE")))
+                .andExpect(jsonPath("$.tag", is("PVE")))
                 .andExpect(jsonPath("$.selectedAbilitiesWeapon1", hasSize(2)))
                 .andExpect(jsonPath("$.selectedAbilitiesWeapon1[0]", is(1)))
                 .andExpect(jsonPath("$.selectedAbilitiesWeapon1[1]", is(2)))
@@ -367,11 +367,11 @@ public class FilledBuildControllerUnitTests {
     }
 
     @Test
-    public void whenDeleteBuild_thenReturnStatusOk() throws Exception {
+    void whenDeleteBuild_thenReturnStatusOk() throws Exception {
 
         // DELETE build2
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder/build2")))
+                requestTo(new URI(builderServiceBaseUrl + "/builder/build2")))
                 .andExpect(method(HttpMethod.DELETE))
                 .andRespond(withStatus(HttpStatus.OK)
                 );
