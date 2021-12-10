@@ -73,7 +73,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET all builds
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builders")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -101,7 +101,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET build with name "build1"
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builder/build1")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder/build1")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -110,7 +110,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET primary weapon
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(weaponServiceBaseUrl + "/weapon/weapon1")))
+                requestTo(new URI("http://" + weaponServiceBaseUrl + "/weapon/weapon1")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -119,7 +119,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET secondary weapon
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(weaponServiceBaseUrl + "/weapon/weapon2")))
+                requestTo(new URI("http://" + weaponServiceBaseUrl + "/weapon/weapon2")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -183,7 +183,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET builds by name
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builders/build")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders/build")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -211,7 +211,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET builds by name
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builders/user/user1")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders/user/user1")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -234,7 +234,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET builds by name
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builders/weapon/weapon1")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders/weapon/weapon1")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -262,7 +262,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET builds by name
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builders/tag/PvE")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builders/tag/PvE")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -287,7 +287,7 @@ public class FilledBuildControllerUnitTests {
 
         // POST create build
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builder")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder")))
                 .andExpect(method(HttpMethod.POST))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -326,7 +326,7 @@ public class FilledBuildControllerUnitTests {
 
         // GET build with name "build2"
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builder/build2")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder/build2")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -335,7 +335,7 @@ public class FilledBuildControllerUnitTests {
 
         // PUT update build2
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builder/build2")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder/build2")))
                 .andExpect(method(HttpMethod.PUT))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -371,7 +371,7 @@ public class FilledBuildControllerUnitTests {
 
         // DELETE build2
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI(builderServiceBaseUrl + "/builder/build2")))
+                requestTo(new URI("http://" + builderServiceBaseUrl + "/builder/build2")))
                 .andExpect(method(HttpMethod.DELETE))
                 .andRespond(withStatus(HttpStatus.OK)
                 );

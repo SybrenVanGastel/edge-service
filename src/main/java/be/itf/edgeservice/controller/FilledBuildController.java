@@ -52,8 +52,8 @@ public class FilledBuildController {
             Build build = restTemplate.getForObject("http://" + builderServiceBaseUrl + "/builder/{name}", Build.class, name);
 
             assert build != null;
-            Weapon primaryWeapon = restTemplate.getForObject(weaponServiceBaseUrl + "/weapon/{name}", Weapon.class, build.getPrimaryWeaponName());
-            Weapon secondaryWeapon = restTemplate.getForObject(weaponServiceBaseUrl + "/weapon/{name}", Weapon.class, build.getSecondaryWeaponName());
+            Weapon primaryWeapon = restTemplate.getForObject("http://" + weaponServiceBaseUrl + "/weapon/{name}", Weapon.class, build.getPrimaryWeaponName());
+            Weapon secondaryWeapon = restTemplate.getForObject("http://" + weaponServiceBaseUrl + "/weapon/{name}", Weapon.class, build.getSecondaryWeaponName());
 
             FilledBuild returnBuild = new FilledBuild(primaryWeapon, secondaryWeapon, build.getName(), build.getUsername(), build.getTag(), build.getSelectedAbilitiesWeapon1(), build.getSelectedAbilitiesWeapon2(), build.getAttributeOptions());
 
@@ -163,7 +163,7 @@ public class FilledBuildController {
             buildToUpdate.setSelectedAbilitiesWeapon2(build.getSelectedAbilitiesWeapon2());
             buildToUpdate.setAttributeOptions(build.getAttributeOptions());
 
-            restTemplate.exchange(builderServiceBaseUrl + "/builder/{name}", HttpMethod.PUT, new HttpEntity<>(buildToUpdate), Build.class, name);
+            restTemplate.exchange("http://" + builderServiceBaseUrl + "/builder/{name}", HttpMethod.PUT, new HttpEntity<>(buildToUpdate), Build.class, name);
 
             return new ResponseEntity<>(buildToUpdate, HttpStatus.OK);
         } catch (Exception e) {
