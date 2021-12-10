@@ -31,7 +31,7 @@ public class FilledBuildController {
 
     @GetMapping("/builds")
     public ResponseEntity<Object> getBuilds() {
-        try {
+//        try {
             ResponseEntity<List<Build>> responseEntityBuilds =
                     restTemplate.exchange(builderServiceBaseUrl + "/builders", HttpMethod.GET, null,
                             new ParameterizedTypeReference<List<Build>>() {
@@ -41,9 +41,9 @@ public class FilledBuildController {
 
             assert builds != null;
             return BuildResponseBuilder.generateBuildsOverview("Successfully returned all builds", HttpStatus.OK, builds);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
     }
 
     @GetMapping("/build/{name}")
