@@ -10,7 +10,16 @@ import java.util.List;
 import java.util.Map;
 
 public class BuildResponseBuilder {
-    public static ResponseEntity<Object> generateBuildsOverview(String message, HttpStatus status, List<Build> builds) {
+
+    private final static String attributesStr = "attributes";
+    private final static String descriptionStr = "description";
+    private final static String imageUrlStr = "imageUrl";
+    private final static String isSelectedStr = "isSelected";
+
+    private BuildResponseBuilder() {
+    }
+
+    public static ResponseEntity<Object> generateBuildsOverview(HttpStatus status, List<Build> builds) {
 
         List<Object> buildList = new ArrayList<>();
 
@@ -30,7 +39,7 @@ public class BuildResponseBuilder {
         return new ResponseEntity<>(buildList, status);
     }
 
-    public static ResponseEntity<Object> generateGetBuildByName(String message, HttpStatus status, FilledBuild build) {
+    public static ResponseEntity<Object> generateGetBuildByName(HttpStatus status, FilledBuild build) {
         Map<String, Object> buildMap = new LinkedHashMap<>();
 
         // Basic information
@@ -48,7 +57,7 @@ public class BuildResponseBuilder {
         attributesMap.put("focus", attributes.get(3));
         attributesMap.put("constitution", attributes.get(4));
 
-        buildMap.put("attributes", attributesMap);
+        buildMap.put(attributesStr, attributesMap);
 
         // Primary Weapon
         Map<String, Object> primaryWeaponMap = new LinkedHashMap<>();
@@ -56,8 +65,8 @@ public class BuildResponseBuilder {
 
         primaryWeaponMap.put("id", primaryWeapon.getId());
         primaryWeaponMap.put("name", primaryWeapon.getName());
-        primaryWeaponMap.put("description", primaryWeapon.getDescription());
-        primaryWeaponMap.put("imageUrl", primaryWeapon.getImageUrl());
+        primaryWeaponMap.put(descriptionStr, primaryWeapon.getDescription());
+        primaryWeaponMap.put(imageUrlStr, primaryWeapon.getImageUrl());
 
         List<Object> abilitiesPrimaryWeapon = new ArrayList<>();
         for(Ability ability : primaryWeapon.getAbilities()) {
@@ -65,15 +74,11 @@ public class BuildResponseBuilder {
 
             abilityMap.put("id", ability.getId());
             abilityMap.put("name", ability.getName());
-            abilityMap.put("description", ability.getDescription());
-            abilityMap.put("imageUrl", ability.getImageUrl());
+            abilityMap.put(descriptionStr, ability.getDescription());
+            abilityMap.put(imageUrlStr, ability.getImageUrl());
             abilityMap.put("category", ability.getCategory());
             abilityMap.put("color", ability.getColor());
-            if(build.getSelectedAbilitiesWeapon1().contains(ability.getId())) {
-                abilityMap.put("isSelected", true);
-            } else {
-                abilityMap.put("isSelected", false);
-            }
+            abilityMap.put(isSelectedStr, build.getSelectedAbilitiesWeapon1().contains(ability.getId()));
 
             abilitiesPrimaryWeapon.add(abilityMap);
         }
@@ -90,7 +95,7 @@ public class BuildResponseBuilder {
                 scaleWithAttributeList.add(attributeMap);
             }
         }
-        primaryWeaponMap.put("attributes", scaleWithAttributeList);
+        primaryWeaponMap.put(attributesStr, scaleWithAttributeList);
 
         buildMap.put("primaryWeapon", primaryWeaponMap);
 
@@ -100,8 +105,8 @@ public class BuildResponseBuilder {
 
         secondaryWeaponMap.put("id", secondaryWeapon.getId());
         secondaryWeaponMap.put("name", secondaryWeapon.getName());
-        secondaryWeaponMap.put("description", secondaryWeapon.getDescription());
-        secondaryWeaponMap.put("imageUrl", secondaryWeapon.getImageUrl());
+        secondaryWeaponMap.put(descriptionStr, secondaryWeapon.getDescription());
+        secondaryWeaponMap.put(imageUrlStr, secondaryWeapon.getImageUrl());
 
         List<Object> abilitiesSecondaryWeapon = new ArrayList<>();
         for(Ability ability : secondaryWeapon.getAbilities()) {
@@ -109,15 +114,11 @@ public class BuildResponseBuilder {
 
             abilityMap.put("id", ability.getId());
             abilityMap.put("name", ability.getName());
-            abilityMap.put("description", ability.getDescription());
-            abilityMap.put("imageUrl", ability.getImageUrl());
+            abilityMap.put(descriptionStr, ability.getDescription());
+            abilityMap.put(imageUrlStr, ability.getImageUrl());
             abilityMap.put("category", ability.getCategory());
             abilityMap.put("color", ability.getColor());
-            if(build.getSelectedAbilitiesWeapon2().contains(ability.getId())) {
-                abilityMap.put("isSelected", true);
-            } else {
-                abilityMap.put("isSelected", false);
-            }
+            abilityMap.put(isSelectedStr, build.getSelectedAbilitiesWeapon2().contains(ability.getId()));
 
             abilitiesSecondaryWeapon.add(abilityMap);
         }
@@ -134,7 +135,7 @@ public class BuildResponseBuilder {
                 scaleWithAttributeList.add(attributeMap);
             }
         }
-        secondaryWeaponMap.put("attributes", scaleWithAttributeList);
+        secondaryWeaponMap.put(attributesStr, scaleWithAttributeList);
         buildMap.put("secondaryWeapon", secondaryWeaponMap);
 
         return new ResponseEntity<>(buildMap, status);
