@@ -145,18 +145,18 @@ public class BuildResponseBuilder {
         Map<String, Object> weaponMap = new LinkedHashMap<>();
         List<Object> abilityList = new ArrayList<>();
 
-        weaponMap.put("id", weapon.getName());
+        weaponMap.put("id", weapon.getId());
         weaponMap.put("name", weapon.getName());
 
         for(Ability ability : weapon.getAbilities()) {
             Map<String, Object> abilityMap = new LinkedHashMap<>();
 
             abilityMap.put("id", ability.getId());
-            abilityMap.put("name", ability.getId());
-            abilityMap.put("description", ability.getId());
-            abilityMap.put("imageUrl", ability.getId());
-            abilityMap.put("category", ability.getId());
-            abilityMap.put("color", ability.getId());
+            abilityMap.put("name", ability.getName());
+            abilityMap.put("description", ability.getDescription());
+            abilityMap.put("imageUrl", ability.getImageUrl());
+            abilityMap.put("category", ability.getCategory());
+            abilityMap.put("color", ability.getColor());
 
             abilityList.add(abilityMap);
         }
