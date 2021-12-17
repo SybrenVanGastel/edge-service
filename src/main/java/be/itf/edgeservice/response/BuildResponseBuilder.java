@@ -140,4 +140,43 @@ public class BuildResponseBuilder {
 
         return new ResponseEntity<>(buildMap, status);
     }
+
+    public static ResponseEntity<Object> generateGetWeapon(HttpStatus status, Weapon weapon) {
+        Map<String, Object> weaponMap = new LinkedHashMap<>();
+        List<Object> abilityList = new ArrayList<>();
+
+        weaponMap.put("id", weapon.getName());
+        weaponMap.put("name", weapon.getName());
+
+        for(Ability ability : weapon.getAbilities()) {
+            Map<String, Object> abilityMap = new LinkedHashMap<>();
+
+            abilityMap.put("id", ability.getId());
+            abilityMap.put("name", ability.getId());
+            abilityMap.put("description", ability.getId());
+            abilityMap.put("imageUrl", ability.getId());
+            abilityMap.put("category", ability.getId());
+            abilityMap.put("color", ability.getId());
+
+            abilityList.add(abilityMap);
+        }
+        weaponMap.put("abilities", abilityList);
+
+        return new ResponseEntity<>(weaponMap, status);
+    }
+
+    public static ResponseEntity<Object> generateGetWeapons(HttpStatus status, List<Weapon> weapons) {
+        List<Object> weaponList = new ArrayList<>();
+
+        for(Weapon weapon : weapons) {
+            Map<String, Object> weaponMap = new LinkedHashMap<>();
+
+            weaponMap.put("id", weapon.getId());
+            weaponMap.put("name", weapon.getName());
+
+            weaponList.add(weaponMap);
+        }
+
+        return new ResponseEntity<>(weaponList, status);
+    }
 }

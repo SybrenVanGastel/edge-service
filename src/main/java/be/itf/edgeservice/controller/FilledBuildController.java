@@ -64,7 +64,6 @@ public class FilledBuildController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @GetMapping("/builds/{name}")
@@ -98,6 +97,35 @@ public class FilledBuildController {
     public ResponseEntity<Object> getBuildsByTag(@PathVariable String name) {
         try {
             return getBuildsParameterized("/builders/tag/{name}", name);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/weapons")
+    public ResponseEntity<Object> getWeapons() {
+        try {
+            ResponseEntity<List<Weapon>> responseEntityWeapons =
+                    restTemplate.exchange(weaponServiceBaseUrl + "/weapons", HttpMethod.GET, null,
+                            new ParameterizedTypeReference<List<Weapon>>() {
+                            });
+
+            List<Weapon> weapons = responseEntityWeapons.getBody();
+
+            assert weapons != null;
+            return BuildResponseBuilder.generateGetWeapons(HttpStatus.OK, weapons);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/weapon/{name}")
+    public ResponseEntity<Object> getWeaponByName(@PathVariable String name) {
+        try {
+            Weapon weapon = restTemplate.getForObject(weaponServiceBaseUrl + "/weapon/{name}", Weapon.class, name);
+
+            assert weapon != null;
+            return BuildResponseBuilder.generateGetWeapon(HttpStatus.OK, weapon);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
