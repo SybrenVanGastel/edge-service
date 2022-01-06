@@ -7,8 +7,14 @@ We zijn op een gemeenschappelijke interesse gekomen, namelijk New World, een gam
 
 # Links back-end repo's
 [https://github.com/SybrenVanGastel/builder-service](https://github.com/SybrenVanGastel/builder-service)
+
+<br/>
+
 [https://github.com/SybrenVanGastel/weapon-service](https://github.com/SybrenVanGastel/weapon-service)
 
 # Links extra repo's
 [https://github.com/SybrenVanGastel/apt-frontend](https://github.com/SybrenVanGastel/apt-frontend)
+
+<br/>
+
 [https://github.com/LuukOptHoog/SeleniumTestingAPT](https://github.com/LuukOptHoog/SeleniumTestingAPT)
