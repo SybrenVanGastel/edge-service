@@ -17,24 +17,45 @@ We zijn op een gemeenschappelijke interesse gekomen, namelijk New World, een gam
 
 ### Screenshots SwaggerUI
 **POST /build**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/post_build.png)
+<br/>
 **DELETE /build/{name}**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/delete_build.png)
+<br/>
 **GET /build/{name}**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/get_build_name.png)
+<br/>
 **PUT /build/{name}**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/put_build.png)
+<br/>
 **GET /builds**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/get_builds.png)
+<br/>
 **GET /builds/tag/{name}**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/get_builds_tag.png)
+<br/>
 **GET /builds/user/{name}**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/get_builds_user.png)
+<br/>
 **GET /builds/weapon/{name}**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/get_builds_weapon.png)
+<br/>
 **GET /builds/{name}**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/get_builds_name.png)
+<br/>
 **GET /weapon/{name}**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/get_weapon_name.png)
+<br/>
 **GET /weapons**
+<br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/get_weapons.png)
