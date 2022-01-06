@@ -14,6 +14,8 @@ We zijn op een gemeenschappelijke interesse gekomen, namelijk New World, een gam
 [https://github.com/SybrenVanGastel/apt-frontend](https://github.com/SybrenVanGastel/apt-frontend)
 <br/>
 [https://github.com/LuukOptHoog/SeleniumTestingAPT](https://github.com/LuukOptHoog/SeleniumTestingAPT)
+<br />
+[https://github.com/SybrenVanGastel/apt-k8s](https://github.com/SybrenVanGastel/apt-k8s)
 
 ### SwaggerUI
 Dit is de link naar de Swagger documentatie ([https://edge-service-server-sybrenvangastel.cloud.okteto.net/swagger-ui.html#/](https://edge-service-server-sybrenvangastel.cloud.okteto.net/swagger-ui.html#/)). Hieronder vindt u de screenshots met responses voor elke API call die er gemaakt kan worden vanuit de edge service.
