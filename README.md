@@ -9,6 +9,8 @@ We zijn op een gemeenschappelijke interesse gekomen, namelijk New World, een gam
 [https://github.com/SybrenVanGastel/builder-service](https://github.com/SybrenVanGastel/builder-service)
 <br/>
 [https://github.com/SybrenVanGastel/weapon-service](https://github.com/SybrenVanGastel/weapon-service)
+<br />
+[https://github.com/SybrenVanGastel/edge-service](https://github.com/SybrenVanGastel/edge-service)
 
 ### Links extra repo's
 [https://github.com/SybrenVanGastel/apt-frontend](https://github.com/SybrenVanGastel/apt-frontend)
