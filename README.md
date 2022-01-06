@@ -15,7 +15,9 @@ We zijn op een gemeenschappelijke interesse gekomen, namelijk New World, een gam
 <br/>
 [https://github.com/LuukOptHoog/SeleniumTestingAPT](https://github.com/LuukOptHoog/SeleniumTestingAPT)
 
-### Screenshots SwaggerUI
+### SwaggerUI
+[https://edge-service-server-sybrenvangastel.cloud.okteto.net/swagger-ui.html#/](https://edge-service-server-sybrenvangastel.cloud.okteto.net/swagger-ui.html#/)
+<br/>
 **POST /build**
 <br/>
 ![screenshot swagger](https://r0785524.sinners.be/apt/post_build.png)
