@@ -2,7 +2,7 @@ name: Build, test and deliver container
 
 on:
   push:
-      branches: [main]
+    branches: [main]
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-          
+
       - name: Build, test and package project
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}  # Needed to get PR information, if any

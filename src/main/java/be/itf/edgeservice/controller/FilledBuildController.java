@@ -87,7 +87,7 @@ public class FilledBuildController {
     @GetMapping("/builds/weapon/{name}")
     public ResponseEntity<Object> getBuildsByWeapon(@PathVariable String name) {
         try {
-            return getBuildsParameterized( "/builders/weapon/{name}", name);
+            return getBuildsParameterized("/builders/weapon/{name}", name);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

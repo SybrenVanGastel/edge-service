@@ -23,7 +23,7 @@ public class BuildResponseBuilder {
 
         List<Object> buildList = new ArrayList<>();
 
-        for(Build build : builds) {
+        for (Build build : builds) {
             Map<String, Object> buildMap = new LinkedHashMap<>();
 
             buildMap.put("id", build.getId());
@@ -69,7 +69,7 @@ public class BuildResponseBuilder {
         primaryWeaponMap.put(imageUrlStr, primaryWeapon.getImageUrl());
 
         List<Object> abilitiesPrimaryWeapon = new ArrayList<>();
-        for(Ability ability : primaryWeapon.getAbilities()) {
+        for (Ability ability : primaryWeapon.getAbilities()) {
             Map<String, Object> abilityMap = new LinkedHashMap<>();
 
             abilityMap.put("id", ability.getId());
@@ -85,8 +85,8 @@ public class BuildResponseBuilder {
         primaryWeaponMap.put("abilities", abilitiesPrimaryWeapon);
 
         List<Object> scaleWithAttributeList = new ArrayList<>();
-        for(Attribute attribute : primaryWeapon.getAttributes()) {
-            if(attribute.getScaleFactor() != 0) {
+        for (Attribute attribute : primaryWeapon.getAttributes()) {
+            if (attribute.getScaleFactor() != 0) {
                 Map<String, Object> attributeMap = new LinkedHashMap<>();
 
                 attributeMap.put("name", attribute.getName());
@@ -109,7 +109,7 @@ public class BuildResponseBuilder {
         secondaryWeaponMap.put(imageUrlStr, secondaryWeapon.getImageUrl());
 
         List<Object> abilitiesSecondaryWeapon = new ArrayList<>();
-        for(Ability ability : secondaryWeapon.getAbilities()) {
+        for (Ability ability : secondaryWeapon.getAbilities()) {
             Map<String, Object> abilityMap = new LinkedHashMap<>();
 
             abilityMap.put("id", ability.getId());
@@ -125,8 +125,8 @@ public class BuildResponseBuilder {
         secondaryWeaponMap.put("abilities", abilitiesSecondaryWeapon);
 
         scaleWithAttributeList = new ArrayList<>();
-        for(Attribute attribute : secondaryWeapon.getAttributes()) {
-            if(attribute.getScaleFactor() != 0) {
+        for (Attribute attribute : secondaryWeapon.getAttributes()) {
+            if (attribute.getScaleFactor() != 0) {
                 Map<String, Object> attributeMap = new LinkedHashMap<>();
 
                 attributeMap.put("name", attribute.getName());
@@ -148,7 +148,7 @@ public class BuildResponseBuilder {
         weaponMap.put("id", weapon.getId());
         weaponMap.put("name", weapon.getName());
 
-        for(Ability ability : weapon.getAbilities()) {
+        for (Ability ability : weapon.getAbilities()) {
             Map<String, Object> abilityMap = new LinkedHashMap<>();
 
             abilityMap.put("id", ability.getId());
@@ -168,7 +168,7 @@ public class BuildResponseBuilder {
     public static ResponseEntity<Object> generateGetWeapons(HttpStatus status, List<Weapon> weapons) {
         List<Object> weaponList = new ArrayList<>();
 
-        for(Weapon weapon : weapons) {
+        for (Weapon weapon : weapons) {
             Map<String, Object> weaponMap = new LinkedHashMap<>();
 
             weaponMap.put("id", weapon.getId());
